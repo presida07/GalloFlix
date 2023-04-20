@@ -28,11 +28,11 @@ namespace MeteFlix.Models
         [Column(TypeName = "Year")]
         [Display(Name = "Ano de Estreia")]
         [Required(ErrorMessage = "O Ano deEstreia é obriatório")]
-        public int16 MovieYear { get; set; }
+        public Int16 MovieYear { get; set; }
 
         [Display(Name = "Duração (em minutos)")]
         [Required(ErrorMessage = "A Duração é obrigatória")]
-        public int16 Duration { get; set; }
+        public Int16 Duration { get; set; }
 
         [Display(Name = "Classificação Etária")]
         [Required(ErrorMessage = "A Classificação Etária é obrigatória")]
@@ -43,11 +43,11 @@ namespace MeteFlix.Models
         public string Image { get; set; }
 
         [NotMapped]
-        [Display(nameof = "Duração")]
+        [Display(Name = "Duração")]
 
         public string HourDuration { get {
             return TimeSpan.FromMinutes(Duration)
-                .ToString(@"%h'h'mm'min'");
+                .ToString(@"%h'h 'mm'min'");
         } }
 
 
