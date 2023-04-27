@@ -46,11 +46,12 @@ namespace MeteFlix.Models
         [Display(Name = "Duração")]
 
         public string HourDuration { get {
-            return TimeSpan.FromMinutes(Duration)
-                .ToString(@"%h'h 'mm'min'");
+            return TimeSpan.FromMinutes(Duration).ToString(@"%h'h 'mm'min'");
         } }
 
-
+        public IColletion<MovieComment> Comments { get; set; }
+        public IColletion<MovieGenre> Genres { get; set; }
+        public IColletion<MovieRating> Ratings { get; set; }
 
     }
 }

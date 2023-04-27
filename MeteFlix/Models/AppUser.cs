@@ -15,4 +15,7 @@ namespace MeteFlix.Models;
 
         [StringLength(200)]
         public string ProfilePicture { get; set; }
+
+        public IColletion<MovieComment> Comments { get; set; }
+        public IColletion<MovieRating> Ratings { get; set; }
     } 
