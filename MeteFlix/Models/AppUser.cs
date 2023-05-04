@@ -10,12 +10,12 @@ namespace MeteFlix.Models;
         public string Name { get; set; }
 
         [Required]
-        [DataType(DatType.Date)]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         [StringLength(200)]
         public string ProfilePicture { get; set; }
 
-        public IColletion<MovieComment> Comments { get; set; }
-        public IColletion<MovieRating> Ratings { get; set; }
+        public ICollection<MovieComment> Comments { get; set; }
+        public ICollection<MovieRating> Ratings { get; set; }
     } 

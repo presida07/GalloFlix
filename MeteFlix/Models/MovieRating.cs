@@ -22,5 +22,5 @@ namespace MeteFlix.Models;
         public byte RatingValue { get; set; }
 
         [Required]
-        public DataTime RatingDate { get; set; } = DataTime.Now; 
+        public DateTime RatingDate { get; set; } = DateTime.Now; 
     }

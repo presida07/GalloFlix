@@ -1,10 +1,28 @@
+using MeteFlix.Data;
+using MeteFlix.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+string conn = builder.Configuration.GetConnectionString("MeteFlix");
+var version = ServerVersion.AutoDetect(conn);
 
+builder.Services.AddDbContext<AppDbContext>(FileOptions =>
+ options.UseMysql(conn, version)
+ );
+
+builder.Services.AddIdentity<AppUser, IndetityRole>()
+.AddIdentityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

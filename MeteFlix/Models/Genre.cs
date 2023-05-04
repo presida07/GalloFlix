@@ -15,6 +15,6 @@ namespace MeteFlix.Models;
         [StringLength(30, ErrorMessage = "O Nome deve possuir no máximo 30 caracteres")]
         public string Name { get; set; } 
 
-        public IColletion<MovieGenre> Movies { get; set; }
+        public ICollection<MovieGenre> Movies { get; set; }
     }
  

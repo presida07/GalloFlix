@@ -1,5 +1,5 @@
 using MeteFlix.Models;
-using Microsoft.AspnNetCore.IDentity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,13 +14,13 @@ namespace MeteFlix.Data;
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<MoveComment> MovieComments { get; set; }
+        public DbSet<MovieComment> MovieComments { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
         public DbSet<MovieRating> MovieRatings { get; set; }
 
-        protected override OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnMOdelCreating(builder);
+            base.OnModelCreating(builder);
             // FluentAPI
             // Personalizar as tabelas do identity
             builder.Entity<IdentityUser>(
@@ -57,7 +57,7 @@ namespace MeteFlix.Data;
                  .WithMany(m => m.Comments)
                  .HasForeignKey(mc => mc.MovieId);
             
-            builder.Entity<MovieComments>()
+            builder.Entity<MovieComment>()
                 .HasOne(mc => mc.User)
                 .WithMany(u => u.Comments)
                 .HasForeignKey(mc => mc.UserId);
@@ -65,16 +65,16 @@ namespace MeteFlix.Data;
 
             #region Many To Many - MovieGenre
 
-            builder.Entity<MovieGenres>().HasKey(
+            builder.Entity<MovieGenre>().HasKey(
                 mg => new { mg.MovieId, mg.GenreId}
             ); 
             
-            builder.Entity<MovieGenres>()
+            builder.Entity<MovieGenre>()
                 .HasOne(mg => mg.Movie)
                 .WithMany(m => m.Genres)
                 .HasForeignKey(mg => mg.MovieId);
 
-            builder.Entity<MovieGenres>()
+            builder.Entity<MovieGenre>()
                  .HasOne(mg => mg.Genre )
                  .WithMany(g => g.Movies)
                  .HasForeignKey(mg => mg.GenreId);

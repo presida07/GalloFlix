@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MeteFlix.Models;
@@ -7,12 +8,12 @@ namespace MeteFlix.Models;
     {
         [Key, Column(Order = 1)]
         public int MovieId { get; set; }
-        [foreignKey("MovieId")]
+        [ForeignKey("MovieId")]
         public Movie Movie { get; set; }
 
         [Key, Column(Order = 2)]
         public byte GenreId { get; set; }
-        [foreignKey("GenreId")]
+        [ForeignKey("GenreId")]
         public Genre Genre { get; set; }
 
 

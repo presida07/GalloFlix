@@ -49,9 +49,9 @@ namespace MeteFlix.Models
             return TimeSpan.FromMinutes(Duration).ToString(@"%h'h 'mm'min'");
         } }
 
-        public IColletion<MovieComment> Comments { get; set; }
-        public IColletion<MovieGenre> Genres { get; set; }
-        public IColletion<MovieRating> Ratings { get; set; }
+        public ICollection<MovieComment> Comments { get; set; }
+        public ICollection<MovieGenre> Genres { get; set; }
+        public ICollection<MovieRating> Ratings { get; set; }
 
     }
 }
