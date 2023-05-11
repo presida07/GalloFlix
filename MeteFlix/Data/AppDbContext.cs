@@ -92,7 +92,7 @@ namespace MeteFlix.Data;
                 .HasForeignKey(mr => mr.MovieId);
 
              builder.Entity<MovieRating>()
-                .HasOne(mr => mr.Movie)
+                .HasOne(mr => mr.User)
                 .WithMany(u => u.Ratings)
                 .HasForeignKey(mr => mr.UserId);
              
