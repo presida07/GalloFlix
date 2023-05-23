@@ -3,6 +3,7 @@ using GalloFlix.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail; 
 
 namespace GalloFlix.Controllers;
 
@@ -36,8 +37,48 @@ namespace GalloFlix.Controllers;
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login()
+        public async Task<IActionResult> Login(LoginDto login)
         {
-            return View();
+            //Verificar o modelo e fazer o login
+            if (ModelState.IsValid) // Validação do lado do servidor 
+            {
+                string userName = login.Email
+                if (IsValidEmail(login.Email))
+                {
+                   var user = await _userManager.FindByEmailAsync(login.Email);
+                   if(user != null)
+                   userName = user.UserName;
+                }
+                var result = await _signInManager.PasswordSignInAsync(
+                  userName, login.Password, login.RememberMe, lockoutOnFailure: true
+                );
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation($"Usuário { login.Email } acessou o sistema");
+                    return LocalRedirect(login.ReturnUrl);
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning($"Usuário { login.Email } está bloqueado");
+                    return RedirectToAction("Lockout");
+                }
+                ModelState.AddModelError("login", "Usuário e/ou Senha Inválidos!!!");
+            }
+            return View(login);
+        }
+
+
+        private bool IsValidEmail(string email)
+        {
+        
+         try
+         {
+            MailAddress m = new(email); 
+            return true;
+         }
+         catch (FormatException)
+         {
+             return false; 
+         }
         }
     }
