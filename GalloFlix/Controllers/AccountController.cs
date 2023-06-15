@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Net.Mail;
-using Microsoft.AspNetCore.WebUtilities; 
+using Microsoft.AspNetCore.WebUtilities;
+using GalloFlix.Services;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace GalloFlix.Controllers;
 
@@ -108,20 +111,39 @@ namespace GalloFlix.Controllers;
 
                 if (result.Succeeded)
                 {
-                   _logger.LogInformation($"Novo Usuário registrado com o email {user.email}");
+                   _logger.LogInformation($"Novo Usuário registrado com o email {user.Email}");
 
                    var userId = await _userManager.GetUserIdAsync(user); 
-                   var code = await _userManager.GenerateEmailConfimartionTokenAsync(user);
+                   var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code)); 
                    var callbackUrl = Url.Action(
                        "ConfirmEMail", "Account",
                        new { userId = userId, code = code },
                        protocol: Request.Scheme
                    );
-                }
 
+                   await _userManager.AddToRoleAsync(user, "Usuário");
+
+                   await _emailSender.SendEmailAsync(
+                       register.Email, "GalloFlix -  Criação de Conta",
+                       $"Por favor, confirme a criação da sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a> "
+                    );
+
+                    return RedirectToAction("RegisterConfirmation"); 
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(
+                        string.Empty, error.Description
+                    );
+                }
             }
             return View(register); 
+        }
+
+        public IActionResult RegisterConfirmation()
+        {
+            return View();
         }
 
         private bool IsValidEmail(string email)
