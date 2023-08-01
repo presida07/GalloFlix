@@ -13,7 +13,7 @@ public class LoginDto
     [DataType(DataType.Password)]
     public string Password { get; set; }
     
-    [Display(Name ="Manter Conectado")]
+    [Display(Name ="Manter Conectado?")]
     public bool RememberMe { get; set; }
     public string ReturnUrl { get; set; }
 }

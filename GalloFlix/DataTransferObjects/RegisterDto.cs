@@ -19,9 +19,6 @@ namespace GalloFlix.DataTransferObjects
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Por favor, informe sua Data de Nascimento")]
         public DateTime DateOfBirth { get; set; }    
-
-        
-       
        
         [DataType(DataType.Password)]
         [Display(Name = "Senha de Acesso")]
