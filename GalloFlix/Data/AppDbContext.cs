@@ -67,7 +67,7 @@ public class AppDbContext : IdentityDbContext
 
         builder.Entity<MovieGenre>()
             .HasOne(mg => mg.Movie)
-            .WithMany(m => m.Genre)
+            .WithMany(m => m.Genres)
             .HasForeignKey(mg => mg.MovieId);
 
         builder.Entity<MovieGenre>()

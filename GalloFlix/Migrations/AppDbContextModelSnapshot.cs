@@ -54,17 +54,17 @@ namespace GalloFlix.Migrations
                     b.Property<short>("MovieYear")
                         .HasColumnType("Year");
 
+                    b.Property<string>("OriginalTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Synopsis")
                         .IsRequired()
                         .HasMaxLength(8000)
                         .HasColumnType("varchar(8000)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("TitleOriginal")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -80,7 +80,7 @@ namespace GalloFlix.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CommenDate")
+                    b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CommentText")
@@ -128,7 +128,8 @@ namespace GalloFlix.Migrations
                         .HasColumnOrder(1);
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTime>("RatingDate")
                         .HasColumnType("datetime(6)");
@@ -171,24 +172,24 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b0656ee-5604-41dc-8155-534a2ca3fec3",
-                            ConcurrencyStamp = "7a14a104-2eb4-4419-b3f7-595d0e3e0080",
+                            Id = "ba96ba83-6d76-4c57-809e-6e196d3c546c",
+                            ConcurrencyStamp = "2c2a7cf0-8d24-47f3-a891-c394d8d40470",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "a7df3b14-6d3c-4e34-ad1f-a5f7ee814ee7",
-                            ConcurrencyStamp = "86d2bc9c-db88-454c-80f7-1ffe6c29c7a0",
+                            Id = "4b0b79d9-0ee0-4c50-8fe3-8df70d44c13a",
+                            ConcurrencyStamp = "ffde0f63-eb18-41a5-8ad4-7c0df892abf7",
                             Name = "Moderador",
                             NormalizedName = "MODERADOR"
                         },
                         new
                         {
-                            Id = "1fe9e945-bb4f-480c-b27c-110361c5e2bd",
-                            ConcurrencyStamp = "dd52c355-9498-4fa1-b7ed-79c91ac108d3",
+                            Id = "5aed4696-9a5e-47f1-ab29-a142355334a8",
+                            ConcurrencyStamp = "d67e9da5-54b5-43fa-84b9-5513c0931da7",
                             Name = "Usuário",
-                            NormalizedName = "USUÁRIO"
+                            NormalizedName = " USUÁRIO"
                         });
                 });
 
@@ -347,8 +348,8 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "f55f5987-7d18-41ec-b186-f0250d0d2389",
-                            RoleId = "8b0656ee-5604-41dc-8155-534a2ca3fec3"
+                            UserId = "c6166d37-5ef7-4318-9269-3ab3cc72ca7e",
+                            RoleId = "ba96ba83-6d76-4c57-809e-6e196d3c546c"
                         });
                 });
 
@@ -392,22 +393,22 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f55f5987-7d18-41ec-b186-f0250d0d2389",
+                            Id = "c6166d37-5ef7-4318-9269-3ab3cc72ca7e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c393dfb3-0f8c-453b-92c2-f4abb58ccb03",
-                            Email = "rafinhabotura@gmail.com",
+                            ConcurrencyStamp = "934ee9fb-d86d-4017-abfe-ea689fc02a14",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "RAFINHABOTURA@GMAIL.COM",
-                            NormalizedUserName = "BOTATUDO",
-                            PasswordHash = "AQAAAAEAACcQAAAAENty88zow4mhs8q6+UDR0vy8T4ug7czZVu99GNarGYZCTmhvoUu6u/a9XlwHZN2mkg==",
-                            PhoneNumber = "14981357504",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEERwCYS/FwdEhhSc43fsQzpc3D74Q1/lvDHNI6fnbIxuui+qOjd7fJqCjUdRb/fY9w==",
+                            PhoneNumber = "14912345678",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "da58aed5-8fe6-4195-b24c-f735e79eeaee",
+                            SecurityStamp = "a18e0fb1-36df-4afc-a97a-fa135cebcfad",
                             TwoFactorEnabled = false,
-                            UserName = "BotaTudo",
-                            DateOfBirth = new DateTime(2006, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Rafael Botura",
+                            UserName = "Admin",
+                            DateOfBirth = new DateTime(2005, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Seu Nome Completo",
                             ProfilePicture = "/img/users/avatar.png"
                         });
                 });
@@ -440,7 +441,7 @@ namespace GalloFlix.Migrations
                         .IsRequired();
 
                     b.HasOne("GalloFlix.Models.Movie", "Movie")
-                        .WithMany("Genre")
+                        .WithMany("Genres")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -529,7 +530,7 @@ namespace GalloFlix.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Genre");
+                    b.Navigation("Genres");
 
                     b.Navigation("Ratings");
                 });
