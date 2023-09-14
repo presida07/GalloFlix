@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GalloFlix.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230803135131_criando-banco")]
+    [Migration("20230914140207_criando-banco")]
     partial class criandobanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("GalloFlix.Models.Genre", b =>
@@ -174,24 +174,24 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ba96ba83-6d76-4c57-809e-6e196d3c546c",
-                            ConcurrencyStamp = "2c2a7cf0-8d24-47f3-a891-c394d8d40470",
+                            Id = "7a5676b5-9836-418b-90b4-85e787cdd1e7",
+                            ConcurrencyStamp = "db7c4972-17d9-452e-9019-f2186808a66a",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "4b0b79d9-0ee0-4c50-8fe3-8df70d44c13a",
-                            ConcurrencyStamp = "ffde0f63-eb18-41a5-8ad4-7c0df892abf7",
+                            Id = "4e9c0670-f487-41a4-9bc7-9566277a49b2",
+                            ConcurrencyStamp = "c27cf1eb-5c51-44df-8974-721ef31da7d5",
                             Name = "Moderador",
                             NormalizedName = "MODERADOR"
                         },
                         new
                         {
-                            Id = "5aed4696-9a5e-47f1-ab29-a142355334a8",
-                            ConcurrencyStamp = "d67e9da5-54b5-43fa-84b9-5513c0931da7",
+                            Id = "c99a4d6e-e724-48fa-b403-c2bd356ff248",
+                            ConcurrencyStamp = "f9ae0be3-27f6-4c42-8ad4-2fb474a7f6e0",
                             Name = "Usuário",
-                            NormalizedName = " USUÁRIO"
+                            NormalizedName = "USUÁRIO"
                         });
                 });
 
@@ -350,8 +350,8 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c6166d37-5ef7-4318-9269-3ab3cc72ca7e",
-                            RoleId = "ba96ba83-6d76-4c57-809e-6e196d3c546c"
+                            UserId = "b0a12335-f281-417b-bb2a-c50204035802",
+                            RoleId = "7a5676b5-9836-418b-90b4-85e787cdd1e7"
                         });
                 });
 
@@ -395,18 +395,18 @@ namespace GalloFlix.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c6166d37-5ef7-4318-9269-3ab3cc72ca7e",
+                            Id = "b0a12335-f281-417b-bb2a-c50204035802",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "934ee9fb-d86d-4017-abfe-ea689fc02a14",
+                            ConcurrencyStamp = "3304f180-b40f-467f-95f1-f49aba934c81",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEERwCYS/FwdEhhSc43fsQzpc3D74Q1/lvDHNI6fnbIxuui+qOjd7fJqCjUdRb/fY9w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBjC5+F76rQ8I4AmtukdluPgyAOcNTcYXpkma8J3u3caa9gO3wM6pPhxWzRwapsEfA==",
                             PhoneNumber = "14912345678",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a18e0fb1-36df-4afc-a97a-fa135cebcfad",
+                            SecurityStamp = "36f952f8-c7d5-4de6-b473-020c7f85928f",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             DateOfBirth = new DateTime(2005, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
